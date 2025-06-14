@@ -1,0 +1,98 @@
+{%extends 'base.html'%}
+{%block main%}
+{%load static%}
+<style>
+
+/* Background patterns for different columns */
+.pattern-1 {
+    background: #a6c311;
+}
+
+.pattern-2 {
+    background: linear-gradient(135deg, #f9f9f9, #dcdcdc);
+}
+
+.pattern-3 {
+    background: linear-gradient(135deg, #ffffff, #cccccc);
+}
+
+.pattern-4 {
+    background: linear-gradient(135deg, #f7f7f7, #e0e0e0);
+}
+
+.pattern-5 {
+    background: linear-gradient(135deg, #f1f1f1, #bcbcbc);
+}
+
+
+</style>
+
+      <div class="kode-inner-banner">
+    	<div class="kode-page-heading">
+        	<h2>Payment</h2>
+            <ol class="breadcrumb">
+              <li><a href="#">Home</a></li>
+              <li><a href="#">Library</a></li>
+              <li class="active">Payment</li>
+            </ol>
+        </div>
+    </div>
+    <!--BANNER END-->
+
+<form method="POST" action="{% url 'payment_success' %}">
+  {% csrf_token %}
+  <input type="hidden" name="razorpay_order_id" id="razorpay_order_id">
+  <input type="hidden" name="razorpay_payment_id" id="razorpay_payment_id">
+  <input type="hidden" name="razorpay_signature" id="razorpay_signature">
+
+  <script
+    src="https://checkout.razorpay.com/v1/checkout.js"
+    data-key="{{ razorpay_key_id }}"
+    data-amount="{{ amount|floatformat:0 }}00"
+    data-currency="{{ currency }}"
+    data-order_id="{{ razorpay_order_id }}"
+    data-buttontext="Pay with Razorpay"
+    data-name="{{ plan.name }}"
+    data-description="Purchase {{ plan.name }} Plan"
+    data-image="https://example.com/your_logo.jpg"
+    data-prefill.name="{{ request.user.username }}"
+    data-prefill.email="{{ request.user.email }}"
+    data-theme.color="#F37254"
+  ></script>
+
+  <input type="hidden" custom="Hidden Element" name="hidden" />
+</form>
+
+<script>
+    var options = {
+        "key": "{{ razorpay_key_id }}", // Enter the Key ID generated from the Dashboard
+        "amount": "{{ amount }}", // Amount is in currency subunits. Default is paise
+        "currency": "{{ currency }}", // Currency
+        "name": "{{ plan.name }}",
+        "description": "Purchase {{ plan.name }} Plan",
+        "image": "https://example.com/your_logo.jpg",
+        "order_id": "{{ razorpay_order_id }}", // Razorpay Order ID generated in backend
+
+        "handler": function (response) {
+            // Capture the Razorpay response and attach to form inputs
+            document.getElementById('razorpay_order_id').value = response.razorpay_order_id;
+            document.getElementById('razorpay_payment_id').value = response.razorpay_payment_id;
+            document.getElementById('razorpay_signature').value = response.razorpay_signature;
+
+            // Automatically submit the form after filling the fields
+            document.forms[0].submit();
+        },
+        "theme": {
+            "color": "#F37254"
+        }
+    };
+
+    var rzp1 = new Razorpay(options);
+    document.getElementById('pay-button').onclick = function (e) {
+        rzp1.open();
+        e.preventDefault();
+    };
+</script>
+
+
+ {%endblock%}

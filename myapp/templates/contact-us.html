@@ -1,0 +1,178 @@
+{%extends 'base.html'%}
+{%block main%}
+{%load static%}
+
+    <!--BANNER START-->
+    <div class="kode-inner-banner">
+    	<div class="kode-page-heading">
+        	<h2>Photo Gallery</h2>
+            <ol class="breadcrumb">
+              <li><a href="#">Home</a></li>
+              <li><a href="#">Library</a></li>
+              <li class="active">Gallery</li>
+            </ol>
+        </div>
+    </div>
+    <!--BANNER END-->
+    <div class="search-section">
+        <div class="container">
+			<!-- Nav tabs -->
+			  <ul class="nav nav-tabs" role="tablist">
+				<li role="presentation"><a href=" {% static '#Basic' %} " aria-controls="Basic" role="tab" data-toggle="tab">Basic</a></li>
+				<li role="presentation" class="active"><a href=" {% static '#Author' %} " aria-controls="Author" role="tab" data-toggle="tab">Author</a></li>
+				<li role="presentation"><a href=" {% static '#Publications' %} " aria-controls="Publications" role="tab" data-toggle="tab">Publications</a></li>
+			  </ul>
+			
+			  <!-- Tab panes -->
+			  <div class="tab-content">
+				<div role="tabpanel" class="tab-pane active" id="Basic">
+					<div class="form-container">
+						<div class="row">
+							<div class="col-md-3 col-sm-4">
+								<input type="text" placeholder="First Name">
+							</div>
+							<div class="col-md-3 col-sm-4">
+								<input type="text" placeholder="Middle Name">
+							</div>
+							<div class="col-md-3 col-sm-4">
+								<input type="text" placeholder="Last Name">
+							</div>
+							<div class="col-md-3 col-sm-12">
+								<button>Search Author</button>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div role="tabpanel" class="tab-pane" id="Author">
+					<div class="form-container">
+						<div class="row">
+							<div class="col-md-3 col-sm-4">
+								<input type="text" placeholder="First Name">
+							</div>
+							<div class="col-md-3 col-sm-4">
+								<input type="text" placeholder="Middle Name">
+							</div>
+							<div class="col-md-3 col-sm-4">
+								<input type="text" placeholder="Last Name">
+							</div>
+							<div class="col-md-3 col-sm-12">
+								<button>Search Author</button>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div role="tabpanel" class="tab-pane" id="Publications">
+					<div class="form-container">
+						<div class="row">
+							<div class="col-md-3 col-sm-4">
+								<input type="text" placeholder="First Name">
+							</div>
+							<div class="col-md-3 col-sm-4">
+								<input type="text" placeholder="Middle Name">
+							</div>
+							<div class="col-md-3 col-sm-4">
+								<input type="text" placeholder="Last Name">
+							</div>
+							<div class="col-md-3 col-sm-12">
+								<button>Search Author</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			  </div>
+		</div>
+    </div>
+    <!--CONTENT START-->
+   <div class="kode-content padding-tb-50">
+    	<div class="container">
+            <!--LOCATION MAP START-->
+            <div class="location-map">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14686.358966928843!2d72.55098920248132!3d23.038831015204703!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x395e84f521640d4b%3A0x6853ee97a9a2996b!2sNavrangpura%2C%20Ahmedabad%2C%20Gujarat!5e0!3m2!1sen!2sin!4v1740825527071!5m2!1sen!2sin" width="1200" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+            <!--LOCATION MAP END-->
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="comment-form">
+                        <div class="row">
+							<form method="post" class="comments-form" action="/contact">
+								{%csrf_token%}
+								<div class="col-md-4 col-sm-4">
+									<div class="input-container">
+										<input type="text" id="name" name="name" class="required" placeholder="Name *" />
+										<label for="name">Name</label>
+									</div>
+								</div>
+								<div class="col-md-4 col-sm-4">
+									<div class="input-container">
+										<input type="text" id="email" name="email" class="required email" placeholder="Email *" >
+										<label for="email">Email</label>
+									</div>
+								</div>
+								<div class="col-md-4 col-sm-4">
+									<div class="input-container">
+										<input type="text" id="subject" name="subject" class="required" placeholder="Subject *" >
+										<label for="subject">Subject</label>
+									</div>
+								</div>
+								<div class="col-md-12 col-sm-12">
+									<div class="input-container">
+										<textarea name="message" id="message" placeholder="add your comment"></textarea>
+										<label for="message">Message</label>
+									</div>
+								</div>
+
+								<div class="col-md-6">
+									<button type="submit" class="kd-button kf_submit widget-newslatter pull-right">Submit</button>
+								</div>
+							</form>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 sidebar">
+                    <div class="widget widget-text">
+                        <h2>get in touch</h2>
+<p>Have questions or need assistance? Connect with us at Booksphere! We're here to help you explore and enjoy your reading journey.</p>
+                    </div>
+                    <div class="widget widget-text">
+                        <h2>Information</h2>
+                        <ul>
+                           <li><i class="fa fa-map-marker"></i>22/D , Kalasagar Complex, Navrangpura, Ahmedabad</li>
+                           <li><i class="fa fa-phone"></i>+91 97830 23701</li>
+                           <li><i class="fa fa-envelope"></i><a href=" {% static 'mailto:info@librarytheme.com' %} ">thelibrary@gmail.com</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> 
+	<section class="kode-uptodate">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-4">
+					<h2>stay up-to-dated</h2>
+				</div>
+				<div class="col-md-8">
+					<div class="row">
+						<div class="col-md-3">
+							<div class="social-icons">
+								<ul>
+									<li><a href="#"><i class="fa fa-facebook"></i></a></li>
+									<li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+									<li><a href="#"><i class="fa fa-twitter"></i></a></li>
+									<li><a href="#"><i class="fa fa-pinterest-p"></i></a></li>
+								</ul>
+							</div>
+						</div>
+						<div class="col-md-9">
+							<div class="input-container">
+								<input type="text" placeholder="Your E-mail Address" id="sub-2">
+								<button>Subscribe</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+    <!--CONTENT END-->
+{%endblock%}

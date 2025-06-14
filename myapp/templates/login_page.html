@@ -1,0 +1,176 @@
+{%extends 'base.html'%}
+{%block main%}
+{%load static%}
+
+
+    <!--BANNER START-->
+    <div class="kode-inner-banner">
+    	<div class="kode-page-heading">
+        	<h2>Login</h2>
+            <ol class="breadcrumb">
+              <li><a href="#">Home</a></li>
+              <li><a href="#">Library</a></li>
+              <li class="active">Login</li>
+            </ol>
+        </div>
+    </div>
+    <!--BANNER END-->
+
+<section class="login">
+    <div class="container py-5">
+        <div class="row justify-content-center">
+            <div class="col-lg-6 col-md-8 col-sm-10">
+                <div class="login-content border shadow-sm p-4 rounded bg-white">
+                    <h3 class="text-center mb-4 text-primary">Welcome Back!</h3>
+                    <p class="text-center text-muted mb-4">Sign in to continue to your account</p>
+                    <form action="/login" method="post">
+                        {% csrf_token %}
+
+                        <!-- Email Field -->
+                        <div class="form-group mb-3">
+                            <label for="email" class="form-label">Email Address</label>
+                            <input
+                                type="email"
+                                name="email2"
+                                id="email"
+                                placeholder="Enter your email"
+                                required
+                                oninput="
+                                    const email = this.value.trim();
+                                    const isValidEmailFormat = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+                                    const containsGmail = email.includes('@gmail.com');
+                                    if (!isValidEmailFormat || !containsGmail) {
+                                        this.setCustomValidity('Please enter a valid Gmail address');
+                                        this.reportValidity();
+                                    } else {
+                                        this.setCustomValidity('');
+                                        this.reportValidity();
+                                    }"
+                            >
+                        </div>
+
+                        <!-- Password Field -->
+                        <div class="form-group mb-3">
+                            <label for="password" class="form-label">Password</label>
+                            <input
+                                type="password"
+                                name="password2"
+                                id="password"
+                                placeholder="Enter your password"
+                                required
+                                oninput="
+                                    const password = this.value.trim();
+                                    const hasLowerCase = /[a-z]/.test(password);
+                                    const hasDigit = /\d/.test(password);
+                                    if (password.length < 5) {
+                                        this.setCustomValidity('Password must be at least 5 characters long');
+                                        this.reportValidity();
+                                    } else if (!hasLowerCase) {
+                                        this.setCustomValidity('Password must contain at least one lowercase letter');
+                                        this.reportValidity();
+                                    } else if (!hasDigit) {
+                                        this.setCustomValidity('Password must contain at least one digit');
+                                        this.reportValidity();
+                                    } else {
+                                        this.setCustomValidity('');
+                                        this.reportValidity();
+                                    }"
+                            >
+                        </div>
+
+                        <!-- Remember Me & Forgot Password -->
+                        <div class="d-flex justify-content-between align-items-center mb-4">
+
+                            <a href="#" data-toggle="modal" data-target="#forgotPasswordModal">Forgot Password?</a>
+                        </div>
+                        <br>
+                        <!-- Submit Button -->
+                        <div class="btn-button-group mg-top-30 mg-bottom-15">
+                  <button type="submit" class="btn-nixx full-width number-font uppercase">
+                      Sign In
+                  </button>
+              </div>
+                        <br>
+                        <!-- Sign Up Link -->
+                        <p class="text-center text-muted mt-4">Don't have an account?
+                            <a href="/signup" class="text-primary text-decoration-none">Sign up now!</a>
+                        </p>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+     <div class="modal fade" id="forgotPasswordModal" tabindex="-1" role="dialog" aria-labelledby="forgotPasswordModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="forgotPasswordModalLabel">Forgot Password</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="/forgotpassword" method="post" class="forgot-password-form">
+                    {% csrf_token %}
+                    <div class="form-input">
+                        <label>Email</label>
+                        <input type="email" name="email2" placeholder="Enter your email" required />
+                    </div>
+                    <button type="submit" class="btn">Reset Password</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    function openForgotPasswordModal() {
+        document.getElementById('forgotPasswordModal').style.display = 'block';
+    }
+
+    function closeForgotPasswordModal() {
+        document.getElementById('forgotPasswordModal').style.display = 'none';
+    }
+
+    function closeForm() {
+        // Redirect to the index page
+        window.location.href = '/';
+    }
+
+    function validateSignUpForm() {
+        var email = document.forms["signUpForm"]["email2"].value;
+        var password = document.forms["signUpForm"]["password2"].value;
+        if (email == "" || password == "") {
+            alert("Please fill in all fields");
+            return false;
+        }
+
+        // Password validation
+        if (password.length < 5) {
+            alert("Password must be at least 5 characters long");
+            return false;
+        }
+
+        if (!/[a-z]/.test(password)) {
+            alert("Password must contain at least one lowercase letter");
+            return false;
+        }
+
+
+        if (!/\d/.test(password)) {
+            alert("Password must contain at least one digit");
+            return false;
+        }
+        return true;
+    }
+</script>
+<!-- //form -->
+
+<!-- Bootstrap JS and jQuery -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <br><br><br><br>
+
+
+{%endblock%}

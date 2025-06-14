@@ -1,0 +1,151 @@
+{%extends 'base.html'%}
+{%block main%}
+{%load static%}
+
+
+        <!--BANNER START-->
+    <div class="kode-inner-banner">
+    	<div class="kode-page-heading">
+        	<h2>User Detail</h2>
+            <ol class="breadcrumb">
+              <li><a href="#">Home</a></li>
+              <li><a href="#">Library</a></li>
+              <li class="active">User Detail</li>
+            </ol>
+        </div>
+    </div>
+    <!--BANNER END-->
+
+<section class="user-detail">
+    <div class="container py-5">
+        <div class="row justify-content-center">
+            <div class="col-lg-6 col-md-8 col-sm-10">
+                <div class="user-detail-content border shadow-sm p-4 rounded bg-white">
+                    <h3 class="text-center mb-4 text-primary">User Detail</h3>
+                    <p class="text-center text-muted mb-4">Please fill in your details to continue</p>
+                    <form action="/adduserdetail" method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+
+                        <!-- Address Field -->
+                        <div class="form-group mb-3">
+                            <label for="address" class="form-label">Address</label>
+                            <textarea
+                                class="form-control rounded-pill"
+                                id="address"
+                                name="address"
+                                rows="3"
+                                placeholder="Enter your address"
+                                required
+                                oninput="
+                                    if (this.value.trim().length < 10) {
+                                        this.setCustomValidity('Address must be at least 10 characters long');
+                                        this.reportValidity();
+                                    } else {
+                                        this.setCustomValidity('');
+                                        this.reportValidity();
+                                    }">
+                            </textarea>
+                        </div>
+
+                        <!-- Profile Image -->
+                        <div class="form-group mb-3">
+                            <label for="profile_image" class="form-label">Profile Image</label>
+                            <input
+                                type="file"
+                                name="profile_image"
+                                class="form-control-file"
+                                accept="image/*"
+                                required
+                                oninput="
+                                    const file = this.files[0];
+                                    if (!file) {
+                                        this.setCustomValidity('Profile image is required');
+                                        this.reportValidity();
+                                    } else {
+                                        const validImageTypes = ['image/jpeg', 'image/png', 'image/gif'];
+                                        if (!validImageTypes.includes(file.type)) {
+                                            this.setCustomValidity('Only JPG, PNG, and GIF images are allowed');
+                                            this.reportValidity();
+                                        } else {
+                                            this.setCustomValidity('');
+                                            this.reportValidity();
+                                        }
+                                    }">
+                        </div>
+
+                        <!-- Date of Birth -->
+                        <div class="form-group mb-3">
+                            <label for="date_of_birth" class="form-label">Date of Birth</label>
+                            <input
+                                type="date"
+                                class="form-control rounded-pill"
+                                id="date_of_birth"
+                                name="date_of_birth"
+                                required
+                                oninput="
+                                    const dob = new Date(this.value);
+                                    const today = new Date();
+                                    if (dob >= today) {
+                                        this.setCustomValidity('Date of birth cannot be in the future');
+                                        this.reportValidity();
+                                    } else {
+                                        this.setCustomValidity('');
+                                        this.reportValidity();
+                                    }">
+                        </div>
+
+                        <!-- Profession -->
+                        <div class="form-group mb-3">
+                            <label for="profession" class="form-label">Profession</label>
+                            <input
+                                type="text"
+                                class="form-control rounded-pill"
+                                id="profession"
+                                name="profession"
+                                placeholder="Enter your profession"
+                                required
+                                oninput="
+                                    if (this.value.trim().length < 3) {
+                                        this.setCustomValidity('Profession must be at least 3 characters long');
+                                        this.reportValidity();
+                                    } else {
+                                        this.setCustomValidity('');
+                                        this.reportValidity();
+                                    }">
+                        </div>
+
+                        <!-- Bio -->
+                        <div class="form-group mb-3">
+                            <label for="bio" class="form-label">Bio</label>
+                            <input
+                                type="text"
+                                class="form-control rounded-pill"
+                                name="bio"
+                                id="bio"
+                                placeholder="Enter a short bio"
+                                required
+                                oninput="
+                                    if (this.value.trim().length > 150) {
+                                        this.setCustomValidity('Bio cannot exceed 150 characters');
+                                        this.reportValidity();
+                                    } else {
+                                        this.setCustomValidity('');
+                                        this.reportValidity();
+                                    }">
+                        </div>
+
+                        <!-- Submit Button -->
+                        <div class="text-center">
+                            <button type="submit" class=" btn-block w-100 py-2 rounded-pill shadow">
+                                Submit
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+        <!-- login area end -->
+     {%endblock%}

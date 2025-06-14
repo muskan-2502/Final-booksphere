@@ -1,0 +1,70 @@
+{%extends 'base.html'%}
+{%block main%}
+{%load static%}
+{%include 'messages.html'%}
+
+
+    <!--BANNER START-->
+    <div class="kode-inner-banner">
+    	<div class="kode-page-heading">
+        	<h2>User Detail</h2>
+            <ol class="breadcrumb">
+              <li><a href="#">Home</a></li>
+              <li><a href="#">Library</a></li>
+              <li class="active">User Detail</li>
+            </ol>
+        </div>
+    </div>
+    <!--BANNER END-->
+        <!-- breadcrumb-area end -->
+        <!-- login area start -->
+<section class="user-detail">
+    <div class="container py-5">
+        <div class="row justify-content-center">
+            <div class="col-lg-6 col-md-8 col-sm-10">
+                <div class="user-detail-content border shadow-sm p-4 rounded bg-white">
+                    <h3 class="text-center mb-4 text-primary">User Detail</h3>
+                    <p class="text-center text-muted mb-4">Please fill in your details to continue</p>
+
+<form class="custom-form" action="/update" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <h4 align="center">User Detail</h4><br>
+
+    <div class="custom-form-input">
+        <label for="address">Address</label>
+        <textarea class="form-control rounded-pill" id="address" name="address1" rows="3">{{data.address}}</textarea>
+    </div>
+
+    <div class="custom-form-input">
+        <label>Profile Image:</label>
+        <img src="/media/{{data.userprofile_image}}" width="100px">
+        <input type="file" name="profile_image1" class="form-control rounded-pill" accept="image/*">
+    </div>
+
+    <div class="custom-form-input">
+        <label for="date_of_birth">Date of Birth</label>
+        <input type="date" class="form-control rounded-pill" id="date_of_birth" name="date_of_birth1" value="{{data.date_of_birth | date:'Y-m-d'}}">
+    </div>
+
+    <div class="custom-form-input">
+        <label for="profession">Profession</label>
+        <input type="text" class="form-control rounded-pill" id="profession" name="profession1" value="{{data.profession}}">
+    </div>
+
+    <div class="custom-form-input">
+        <label for="bio">Bio</label>
+         <input type="text" class="form-control rounded-pill" name="bio1" id="bio" value="{{data.bio}}">
+      </div>
+    <br>
+<div class="text-center">
+                            <button type="submit" class=" btn-block w-100 py-2 rounded-pill shadow">
+                                Submit
+                            </button>
+                        </div></form>
+</div>
+            </div>
+        </div>
+    </div>
+</section>
+        <!-- login area end -->
+     {%endblock%}

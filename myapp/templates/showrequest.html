@@ -1,0 +1,53 @@
+{%extends 'base.html'%}
+{%block main%}
+{%load static%}
+
+        <!--BANNER START-->
+    <div class="kode-inner-banner">
+    	<div class="kode-page-heading">
+        	<h2>Request</h2>
+            <ol class="breadcrumb">
+              <li><a href="#">Home</a></li>
+              <li><a href="#">Library</a></li>
+              <li class="active">Request</li>
+            </ol>
+        </div>
+    </div>
+
+
+<div class="container mt-5">
+        <h2 class="text-center mb-4">Request</h2>
+
+        <table class="table table-bordered text-center">
+            <thead class="table-dark">
+                <tr>
+                    <th>#</th>
+                    <th>Publisher</th>
+                    <th>Book</th>
+                    <th>Publish Date</th>
+                    <th>Message</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for booking in bookings %}
+                <tr>
+                    <td>{{ forloop.counter }}</td>
+                    <td>{{ booking.book.title }}</td>
+                    <td>{{ booking.publisher.name }}</td>
+                    <td>{{ booking.publish_date }}</td>
+                    <td>{{ booking.additional_notes }}</td>
+                    <td>{{ booking.status }}</td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="8" class="text-center text-muted">No bookings available</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+        <!-- login area end -->
+     {%endblock%}
+

@@ -1,0 +1,73 @@
+{%extends 'base.html'%}
+{%block main%}
+{%load static%}
+
+
+        <!--BANNER START-->
+    <div class="kode-inner-banner">
+    	<div class="kode-page-heading">
+        	<h2>Book Detail</h2>
+            <ol class="breadcrumb">
+              <li><a href="#">Home</a></li>
+              <li><a href="#">Library</a></li>
+              <li class="active">Book Detail</li>
+            </ol>
+        </div>
+    </div>
+    <!--BANNER END-->
+<section class="vendor-detail">
+    <div class="container py-5">
+        <div class="row justify-content-center">
+            <div class="col-lg-6 col-md-8 col-sm-10">
+                <div class="vendor-detail-content border shadow-sm p-4 rounded bg-white">
+                    <h3 class="text-center mb-4 text-primary">Book Detail</h3>
+                    <p class="text-center text-muted mb-4">Please provide your vendor details</p>
+<form action="{% url 'upload_book' %}" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+
+        <!-- Title -->
+        <label for="title">Book Title:</label>
+        <input type="text" id="title" name="title" required>
+        <br><br>
+
+
+
+        <!-- Category Dropdown -->
+        <label for="category">Category:</label>
+        <select id="category" name="category" required>
+            <option value="">Select a Category</option>
+            {% for category in categories %}
+                <option value="{{ category.id }}">{{ category.name }}</option>
+            {% endfor %}
+        </select>
+        <br><br>
+
+        <!-- Description -->
+        <label for="description">Description:</label>
+        <textarea id="description" name="description" rows="4" required></textarea>
+        <br><br>
+
+        <!-- Subscription Type -->
+        <label for="subscription_type">Subscription Type:</label>
+        <select id="subscription_type" name="subscription_type" required>
+            <option value="Free">Free</option>
+            <option value="Premium">Premium</option>
+        </select>
+        <br><br>
+
+        <!-- Book Cover Image Upload -->
+        <label for="book_image">Book Cover Image:</label>
+        <input type="file" id="book_image" name="book_image" accept="image/*">
+        <br><br>
+
+        <!-- Submit Button -->
+        <button type="submit">Upload Book</button>
+
+    </form>
+</div>
+            </div>
+        </div>
+    </div>
+</section>
+        <!-- login area end -->
+     {%endblock%}

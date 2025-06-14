@@ -1,0 +1,190 @@
+{%extends 'base.html'%}
+{%block main%}
+{%load static%}
+
+
+    <!--BANNER START-->
+    <div class="kode-inner-banner">
+    	<div class="kode-page-heading">
+        	<h2>Register</h2>
+            <ol class="breadcrumb">
+              <li><a href="#">Home</a></li>
+              <li><a href="#">Library</a></li>
+              <li class="active">Register</li>
+            </ol>
+        </div>
+    </div>
+    <!--BANNER END-->
+
+<section class="login">
+    <div class="container py-5">
+        <div class="row justify-content-center">
+            <div class="col-lg-6 col-md-8 col-sm-10">
+                <div class="login-content border shadow-sm p-4 rounded bg-white">
+                    <h3 class="text-center mb-4 text-primary">Welcome Back!</h3>
+                    <p class="text-center text-muted mb-4">Sign in to continue to your account</p>
+                    <form action="/signup" method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+
+                        <!-- Full Name -->
+                        <div class="form-group mb-3">
+                            <label for="name1">Full Name <span class="text-danger">*</span></label>
+                            <input
+                                type="text"
+                                id="name1"
+                                name="name1"
+                                placeholder="Enter your full name"
+                                required>
+                        </div>
+
+                        <!-- Email -->
+                        <div class="form-group mb-3">
+                            <label for="email1">Email Address <span class="text-danger">*</span></label>
+                            <input
+                                type="email"
+                                id="email1"
+                                name="email1"
+                                placeholder="Enter your email address"
+                                required
+                                oninput="
+                                    const email = this.value.trim();
+                                    const isValidEmailFormat = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+                                    const containsGmail = email.includes('@gmail.com');
+                                    if (!isValidEmailFormat || !containsGmail) {
+                                        this.setCustomValidity('Please enter a valid Gmail address');
+                                        this.reportValidity();
+                                    } else {
+                                        this.setCustomValidity('');
+                                        this.reportValidity();
+                                    }
+                                ">
+                        </div>
+
+                        <!-- Phone Number -->
+                        <div class="form-group mb-3">
+                            <label for="phone1">Phone Number <span class="text-danger">*</span></label>
+                            <input
+                                type="text"
+                                id="phone1"
+                                name="phone1"
+                                placeholder="Enter your 10-digit phone number"
+                                required
+                                oninput="
+                                    const phoneNumber = this.value.trim();
+                                    if (!/^[0-9]{10}$/.test(phoneNumber)) {
+                                        this.setCustomValidity('Phone number must be 10 digits');
+                                        this.reportValidity();
+                                    } else {
+                                        this.setCustomValidity('');
+                                        this.reportValidity();
+                                    }
+                                ">
+                        </div>
+
+                        <!-- Password -->
+                        <div class="form-group mb-3">
+                            <label for="password1">Password <span class="text-danger">*</span></label>
+                            <input
+                                type="password"
+                                id="password1"
+                                name="password1"
+                                placeholder="Enter a strong password"
+                                required
+                                oninput="
+                                    const password = this.value.trim();
+                                    const hasLowerCase = /[a-z]/.test(password);
+                                    const hasDigit = /\d/.test(password);
+                                    if (password.length < 5) {
+                                        this.setCustomValidity('Password must be at least 5 characters long');
+                                        this.reportValidity();
+                                    } else if (!hasLowerCase) {
+                                        this.setCustomValidity('Password must contain at least one lowercase letter');
+                                        this.reportValidity();
+                                    } else if (!hasDigit) {
+                                        this.setCustomValidity('Password must contain at least one digit');
+                                        this.reportValidity();
+                                    } else {
+                                        this.setCustomValidity('');
+                                        this.reportValidity();
+                                    }
+                                ">
+                        </div>
+
+                        <!-- ID Proof (Initially Hidden) -->
+                        <div class="form-group mb-3" id="id-proof-group" style="display:none;">
+                            <label for="id_proof">ID Proof <span class="text-danger">*</span></label>
+                            <input
+                                type="file"
+                                id="id_proof"
+                                name="id_proof1"
+                                class="form-control-file"
+                                accept="image/*"
+                                required>
+                        </div>
+
+                        <!-- User Type -->
+                        <div class="form-group mb-3">
+                            <label>User Type <span class="text-danger">*</span></label>
+                            <div class="form-check">
+                                <input
+                                    type="radio"
+                                    id="vendor_radio"
+                                    name="usertype"
+                                    value="Author"
+                                    class="form-check-input"
+                                    required>
+                                <label for="vendor_radio" class="form-check-label">Author</label>
+                            </div>
+                            <div class="form-check">
+                                <input
+                                    type="radio"
+                                    id="publsiher_radio"
+                                    name="usertype"
+                                    value="Publisher"
+                                    class="form-check-input"
+                                    required>
+                                <label for="publsiher_radio" class="form-check-label">Publisher</label>
+                            </div>
+                            <div class="form-check">
+                                <input
+                                    type="radio"
+                                    id="user_radio"
+                                    name="usertype"
+                                    value="User"
+                                    class="form-check-input"
+                                    required>
+                                <label for="user_radio" class="form-check-label">User</label>
+                            </div>
+                        </div>
+
+
+                        <!-- Submit Button -->
+                        <div class="btn-button-group mg-top-30 mg-bottom-15">
+                  <button type="submit" class="btn-nixx full-width number-font uppercase">
+                      Sign up
+                  </button>
+              </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<script>
+    // Show ID proof input when either User or Vendor is selected
+    document.querySelectorAll('input[name="usertype"]').forEach(input => {
+        input.addEventListener('change', function() {
+            const idProofGroup = document.getElementById('id-proof-group');
+            if (this.value === 'User' || this.value === 'Author' || this.value === 'Publisher') {
+                idProofGroup.style.display = 'block'; // Show ID proof input
+            } else {
+                idProofGroup.style.display = 'none'; // Hide ID proof input
+            }
+        });
+    });
+</script>
+
+    <!--  -->
+	
+
+{%endblock%}

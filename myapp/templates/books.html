@@ -1,0 +1,169 @@
+{%extends 'base.html'%}
+{%block main%}
+{%load static%}
+
+    <!--BANNER START-->
+    <div class="kode-inner-banner">
+    	<div class="kode-page-heading">
+        	<h2>Books</h2>
+            <ol class="breadcrumb">
+              <li><a href="#">Home</a></li>
+              <li><a href="#">Library</a></li>
+              <li class="active">Books</li>
+            </ol>
+        </div>
+    </div>
+    <!--BANNER END-->
+    <div class="search-section">
+		<div class="container">
+			<!-- Nav tabs -->
+			  <ul class="nav nav-tabs" role="tablist">
+				<li role="presentation"><a href=" {% static '#Basic' %} " aria-controls="Basic" role="tab" data-toggle="tab">Basic</a></li>
+				<li role="presentation" class="active"><a href=" {% static '#Author' %} " aria-controls="Author" role="tab" data-toggle="tab">Author</a></li>
+				<li role="presentation"><a href=" {% static '#Publications' %} " aria-controls="Publications" role="tab" data-toggle="tab">Publications</a></li>
+			  </ul>
+			
+			  <!-- Tab panes -->
+			  <div class="tab-content">
+				<div role="tabpanel" class="tab-pane active" id="Basic">
+					<div class="form-container">
+						<div class="row">
+							<div class="col-md-3 col-sm-4">
+								<input type="text" placeholder="First Name">
+							</div>
+							<div class="col-md-3 col-sm-4">
+								<input type="text" placeholder="Middle Name">
+							</div>
+							<div class="col-md-3 col-sm-4">
+								<input type="text" placeholder="Last Name">
+							</div>
+							<div class="col-md-3 col-sm-12">
+								<button>Search Author</button>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div role="tabpanel" class="tab-pane" id="Author">
+					<div class="form-container">
+						<div class="row">
+							<div class="col-md-3 col-sm-4">
+								<input type="text" placeholder="First Name">
+							</div>
+							<div class="col-md-3 col-sm-4">
+								<input type="text" placeholder="Middle Name">
+							</div>
+							<div class="col-md-3 col-sm-4">
+								<input type="text" placeholder="Last Name">
+							</div>
+							<div class="col-md-3 col-sm-12">
+								<button>Search Author</button>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div role="tabpanel" class="tab-pane" id="Publications">
+					<div class="form-container">
+						<div class="row">
+							<div class="col-md-3 col-sm-4">
+								<input type="text" placeholder="First Name">
+							</div>
+							<div class="col-md-3 col-sm-4">
+								<input type="text" placeholder="Middle Name">
+							</div>
+							<div class="col-md-3 col-sm-4">
+								<input type="text" placeholder="Last Name">
+							</div>
+							<div class="col-md-3 col-sm-12">
+								<button>Search Author</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			  </div>
+		</div>
+	</div>
+    <!--CONTENT START-->
+    <!--CONTENT START-->
+    <div class="kode-content padding-tb-50">
+        <!--TOP AUTHERS START-->
+        <div class="container">
+            <div class="kode-product-filter">
+                
+            </div>
+            <div class="row">
+				{%for i in bookdetails%}
+                	<!--PRODUCT GRID START-->
+                	<div class="col-md-3 col-sm-6">
+                    	<div class="best-seller-pro">
+                        	<figure>
+                            	<img src="{{i.book_image.url}}" alt="">
+                            </figure>
+                            <div class="kode-text">
+                            	<h3>{{i.title}}</h3>
+                            </div>
+                            <div class="kode-caption">
+                            	<h3>{{i.title}}</h3>
+                                <div class="rating">
+<span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span>
+</div>
+                                <p>{{i.author.name}}</p>
+                                <a href="/bookdetail/{{i.id}}" class="add-to-cart">View Detail</a>
+                            </div>
+                        </div>
+                    </div>
+				{%endfor%}
+            </div>
+            <!--PAGINATION START-->
+            <nav>
+              <ul class="pagination">
+                <li>
+                  <a href="#" aria-label="Previous">
+                    <span aria-hidden="true">&laquo;</span>
+                  </a>
+                </li>
+                <li><a href="#">1</a></li>
+                <li><a href="#">2</a></li>
+                <li><a href="#">3</a></li>
+                <li><a href="#">4</a></li>
+                <li><a href="#">5</a></li>
+                <li>
+                  <a href="#" aria-label="Next">
+                    <span aria-hidden="true">&raquo;</span>
+                  </a>
+                </li>
+              </ul>
+            </nav>
+            <!--PAGINATION END-->
+        </div>
+        <!--TOP AUTHERS END-->
+   </div> 
+	<section class="kode-uptodate">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-4">
+					<h2>stay up-to-dated</h2>
+				</div>
+				<div class="col-md-8">
+					<div class="row">
+						<div class="col-md-3">
+							<div class="social-icons">
+								<ul>
+									<li><a href="#"><i class="fa fa-facebook"></i></a></li>
+									<li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+									<li><a href="#"><i class="fa fa-twitter"></i></a></li>
+									<li><a href="#"><i class="fa fa-pinterest-p"></i></a></li>
+								</ul>
+							</div>
+						</div>
+						<div class="col-md-9">
+							<div class="input-container">
+								<input type="text" placeholder="Your E-mail Address" id="sub-2">
+								<button>Subscribe</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+ {%endblock%}

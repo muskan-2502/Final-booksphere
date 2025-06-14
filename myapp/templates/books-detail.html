@@ -1,0 +1,263 @@
+{%extends 'base.html'%}
+{%block main%}
+{%load static%}
+
+<style>
+	.book-files-section {
+    margin-top: 20px;
+    padding: 15px;
+    background: #f8f9fa;
+    border-radius: 8px;
+}
+
+.file-card {
+    background: #fff;
+    border: 1px solid #ddd;
+    padding: 15px;
+    border-radius: 8px;
+    text-align: center;
+    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
+    transition: 0.3s;
+}
+
+.file-card:hover {
+    transform: translateY(-5px);
+}
+
+.file-preview {
+    margin-bottom: 10px;
+}
+
+.open-btn, .download-btn {
+    display: inline-block;
+    padding: 8px 12px;
+    margin: 5px;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+.open-btn {
+    background: #28a745;
+}
+
+.open-btn:hover {
+    background: #218838;
+}
+
+.download-btn {
+    background: #deab90;
+}
+
+.download-btn:hover {
+    background: #0056b3;
+}
+
+</style>
+    <!--BANNER START-->
+    <div class="kode-inner-banner">
+    	<div class="kode-page-heading">
+        	<h2>Product Detail</h2>
+            <ol class="breadcrumb">
+              <li><a href="#">Home</a></li>
+              <li><a href="#">Library</a></li>
+              <li class="active">Product Detail</li>
+            </ol>
+        </div>
+    </div>
+    <!--BANNER END-->
+    <div class="search-section">
+        <div class="container">
+			<!-- Nav tabs -->
+			  <ul class="nav nav-tabs" role="tablist">
+				<li role="presentation"><a href=" {% static '#Basic' %} " aria-controls="Basic" role="tab" data-toggle="tab">Basic</a></li>
+				<li role="presentation" class="active"><a href=" {% static '#Author' %} " aria-controls="Author" role="tab" data-toggle="tab">Author</a></li>
+				<li role="presentation"><a href=" {% static '#Publications' %} " aria-controls="Publications" role="tab" data-toggle="tab">Publications</a></li>
+			  </ul>
+
+			  <!-- Tab panes -->
+			  <div class="tab-content">
+				<div role="tabpanel" class="tab-pane active" id="Basic">
+					<div class="form-container">
+						<div class="row">
+							<div class="col-md-3 col-sm-4">
+								<input type="text" placeholder="First Name">
+							</div>
+							<div class="col-md-3 col-sm-4">
+								<input type="text" placeholder="Middle Name">
+							</div>
+							<div class="col-md-3 col-sm-4">
+								<input type="text" placeholder="Last Name">
+							</div>
+							<div class="col-md-3 col-sm-12">
+								<button>Search Author</button>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div role="tabpanel" class="tab-pane" id="Author">
+					<div class="form-container">
+						<div class="row">
+							<div class="col-md-3 col-sm-4">
+								<input type="text" placeholder="First Name">
+							</div>
+							<div class="col-md-3 col-sm-4">
+								<input type="text" placeholder="Middle Name">
+							</div>
+							<div class="col-md-3 col-sm-4">
+								<input type="text" placeholder="Last Name">
+							</div>
+							<div class="col-md-3 col-sm-12">
+								<button>Search Author</button>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div role="tabpanel" class="tab-pane" id="Publications">
+					<div class="form-container">
+						<div class="row">
+							<div class="col-md-3 col-sm-4">
+								<input type="text" placeholder="First Name">
+							</div>
+							<div class="col-md-3 col-sm-4">
+								<input type="text" placeholder="Middle Name">
+							</div>
+							<div class="col-md-3 col-sm-4">
+								<input type="text" placeholder="Last Name">
+							</div>
+							<div class="col-md-3 col-sm-12">
+								<button>Search Author</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			  </div>
+		</div>
+    </div>
+    <!--CONTENT START-->
+
+<div class="kode-content padding-tb-50">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-9">
+                <!--BOOK DETAIL START-->
+                <div class="lib-book-detail">
+                    <div class="row">
+                        <div class="col-md-5">
+                            <div class="kode-thumb">
+                                <img src="{{ bookdetails.book_image.url }}" alt="">
+                            </div>
+                        </div>
+                        <div class="col-md-7">
+                            <div class="kode-text">
+                                <h2>{{ bookdetails.title }}</h2>
+                                <div class="product-review">
+                                    <div class="rating">
+                                        <span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span>
+                                    </div>
+                                    <p>4 Customer reviews</p>
+                                </div>
+                                <div class="product-price">
+                                    <p>Author: <span class="color">{{ bookdetails.author.name }}</span></p>
+                                </div>
+                                <div class="book-text">
+                                    <p>{{ bookdetails.description }}</p>
+                                </div>
+                                <div class="book-text">
+                                    <p>Category: {{ bookdetails.category.name }}</p>
+                                    <p>Book Type: {{ bookdetails.subscription_type }}</p>
+                                    <p>Author: {{ bookdetails.author.name }}</p>
+                                    <p>Publisher: Journal Inc</p>
+                                </div>
+
+                                <!-- DISPLAY MULTIPLE FILES -->
+                                <div class="book-files-section">
+    <h3>Available Files</h3>
+    <div class="row">
+        {% for file in book_files %}
+            <div class="col-md-4">
+                <div class="file-card">
+                    <!-- 🎵 Audio Player for MP3, WAV, AAC -->
+                    {% if file.file.url|lower|slice:"-4:" == ".mp3" or file.file.url|lower|slice:"-4:" == ".wav" or file.file.url|lower|slice:"-4:" == ".aac" %}
+                        <div class="file-preview">
+                            <audio controls>
+                                <source src="{{ file.file.url }}" type="audio/mpeg">
+                                Your browser does not support the audio element.
+                            </audio>
+                        </div>
+                    {% elif file.file.url|lower|slice:"-4:" == ".pdf" %}
+                        <!-- 📄 Clickable PDF Icon -->
+                        <div class="file-preview">
+                            <a href="{{ file.file.url }}" target="_blank">
+                                <img src="https://upload.wikimedia.org/wikipedia/commons/8/87/PDF_file_icon.svg"
+                                     alt="PDF Icon" width="80">
+                            </a>
+                        </div>
+                    {% elif file.file.url|lower|slice:"-5:" == ".epub" %}
+                        <!-- 📚 Clickable EPUB Icon -->
+                        <div class="file-preview">
+                            <a href="{{ file.file.url }}" target="_blank">
+                                <img src="https://upload.wikimedia.org/wikipedia/commons/3/3a/EPUB_logo.svg"
+                                     alt="EPUB Icon" width="80">
+                            </a>
+                        </div>
+                    {% endif %}
+
+                    <!-- File Name, Open & Download -->
+                    <div class="file-info">
+                        <p><strong>File:</strong> {{ file.file.name|cut:"books/" }}</p>
+                        <a href="{{ file.file.url }}" target="_blank" class="open-btn">📂 Open File</a>
+                        <a href="{{ file.file.url }}" download class="download-btn">📥 Download</a>
+                    </div>
+                </div>
+            </div>
+        {% empty %}
+            <p>No files available for this book.</p>
+        {% endfor %}
+    </div>
+</div>
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--BOOK DETAIL END-->
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+	<section class="kode-uptodate">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-4">
+					<h2>stay up-to-dated</h2>
+				</div>
+				<div class="col-md-8">
+					<div class="row">
+						<div class="col-md-3">
+							<div class="social-icons">
+								<ul>
+									<li><a href="#"><i class="fa fa-facebook"></i></a></li>
+									<li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+									<li><a href="#"><i class="fa fa-twitter"></i></a></li>
+									<li><a href="#"><i class="fa fa-pinterest-p"></i></a></li>
+								</ul>
+							</div>
+						</div>
+						<div class="col-md-9">
+							<div class="input-container">
+								<input type="text" placeholder="Your E-mail Address" id="sub-2">
+								<button>Subscribe</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+ {%endblock%}

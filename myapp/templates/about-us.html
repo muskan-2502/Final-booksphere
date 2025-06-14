@@ -1,0 +1,235 @@
+{%extends 'base.html'%}
+{%block main%}
+{%load static%}
+
+    <!--BANNER START-->
+    <div class="kode-inner-banner">
+    	<div class="kode-page-heading">
+        	<h2>About us</h2>
+            <ol class="breadcrumb">
+              <li><a href="#">Home</a></li>
+              <li><a href="#">Library</a></li>
+              <li class="active">About Us</li>
+            </ol>
+        </div>
+    </div>
+    <!--BANNER END-->
+    <!--BUT NOW START-->
+    <div class="search-section">
+		<div class="container">
+			<!-- Nav tabs -->
+			  <ul class="nav nav-tabs" role="tablist">
+				<li role="presentation"><a href=" {% static '#Basic' %} " aria-controls="Basic" role="tab" data-toggle="tab">Basic</a></li>
+				<li role="presentation" class="active"><a href=" {% static '#Author' %} " aria-controls="Author" role="tab" data-toggle="tab">Author</a></li>
+				<li role="presentation"><a href=" {% static '#Publications' %} " aria-controls="Publications" role="tab" data-toggle="tab">Publications</a></li>
+			  </ul>
+			
+			  <!-- Tab panes -->
+			  <div class="tab-content">
+				<div role="tabpanel" class="tab-pane active" id="Basic">
+					<div class="form-container">
+						<div class="row">
+							<div class="col-md-3 col-sm-4">
+								<input type="text" placeholder="First Name">
+							</div>
+							<div class="col-md-3 col-sm-4">
+								<input type="text" placeholder="Middle Name">
+							</div>
+							<div class="col-md-3 col-sm-4">
+								<input type="text" placeholder="Last Name">
+							</div>
+							<div class="col-md-3 col-sm-12">
+								<button>Search Author</button>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div role="tabpanel" class="tab-pane" id="Author">
+					<div class="form-container">
+						<div class="row">
+							<div class="col-md-3 col-sm-4">
+								<input type="text" placeholder="First Name">
+							</div>
+							<div class="col-md-3 col-sm-4">
+								<input type="text" placeholder="Middle Name">
+							</div>
+							<div class="col-md-3 col-sm-4">
+								<input type="text" placeholder="Last Name">
+							</div>
+							<div class="col-md-3 col-sm-12">
+								<button>Search Author</button>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div role="tabpanel" class="tab-pane" id="Publications">
+					<div class="form-container">
+						<div class="row">
+							<div class="col-md-3 col-sm-4">
+								<input type="text" placeholder="First Name">
+							</div>
+							<div class="col-md-3 col-sm-4">
+								<input type="text" placeholder="Middle Name">
+							</div>
+							<div class="col-md-3 col-sm-4">
+								<input type="text" placeholder="Last Name">
+							</div>
+							<div class="col-md-3 col-sm-12">
+								<button>Search Author</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			  </div>
+		</div>
+	</div>
+    <!--BUT NOW END-->
+    <!--CONTENT START-->
+    <div class="kode-content">
+        <!--BOOK GUIDE SECTION START-->
+        <section class="kode-about-us-section">
+        	<div class="container">
+            	<!--SECTION CONTENT START-->
+            	<div class="heading-1">
+                	<h2>Give That You Like Never Before</h2>
+<p>Discover and enjoy your favorite books like never before with Booksphere. Explore a world of knowledge and imagination!</p>
+                </div>
+                <!--SECTION CONTENT END-->
+                <div class="row">
+                	<div class="col-md-6">
+    <h2>Who we are?</h2>
+    <p>Booksphere is a platform dedicated to book lovers, authors, and publishers. We provide a seamless digital reading experience, connecting readers with a vast collection of books, from free classics to premium exclusives. Our mission is to make reading more accessible and enjoyable for everyone.</p>
+    <ul class="kd-list3">
+        <li><a href="#">Explore a diverse collection of books across various genres</a></li>
+        <li><a href="#">Connect with authors and discover their latest works</a></li>
+        <li><a href="#">Enjoy free books or subscribe for premium content</a></li>
+        <li><a href="#">Seamlessly access books anytime, anywhere</a></li>
+    </ul>
+</div>
+
+                    <div class="col-md-6">
+                    	<div class="about-thumb">
+                        	<img src=" {% static 'images/about-img3.png' %} " alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!--BOOK GUIDE SECTION END-->
+
+        <section class="our-libraries">
+        	<div class="container">
+            	<h2>Our Libraries</h2>
+                <div class="our-libraries-cover">
+                	<div class="owl-library">
+                    <div class="item">
+                    	<div class="kode-thumb">
+                        	<a href="#"><img src=" {% static 'images/library-1.png' %} " alt="Library"></a>
+                    	</div>
+                    </div>
+                    <div class="item">
+                    	<div class="kode-thumb">
+                        	<a href="#"><img src=" {% static 'images/library-2.png' %} " alt="Library"></a>
+                    	</div>
+                    </div>
+                    <div class="item">
+                    	<div class="kode-thumb">
+                        	<a href="#"><img src=" {% static 'images/library-3.png' %} " alt="Library"></a>
+                    	</div>
+                    </div>
+                    <div class="item">
+                    	<div class="kode-thumb">
+                        	<a href="#"><img src=" {% static 'images/library-4.png' %} " alt="Library"></a>
+                    	</div>
+                    </div>
+                    <div class="item">
+                    	<div class="kode-thumb">
+                        	<a href="#"><img src=" {% static 'images/library-1.png' %} " alt="Library"></a>
+                    	</div>
+                    </div>
+                    <div class="item">
+                    	<div class="kode-thumb">
+                        	<a href="#"><img src=" {% static 'images/library-2.png' %} " alt="Library"></a>
+                    	</div>
+                    </div>
+                    <div class="item">
+                    	<div class="kode-thumb">
+                        	<a href="#"><img src=" {% static 'images/library-3.png' %} " alt="Library"></a>
+                    	</div>
+                    </div>
+                    <div class="item">
+                    	<div class="kode-thumb">
+                        	<a href="#"><img src=" {% static 'images/library-4.png' %} " alt="Library"></a>
+                    	</div>
+                    </div>
+                    
+                </div>
+                </div>
+            </div>
+        </section>
+        <!--LIBRARY GALLERY SECTION END-->
+        <!--FACTS SECTION START-->
+        <section class="kode-interesting-facts">
+            <div class="container">
+				<h2>Interesting Facts</h2>
+                <div class="kode-facts">
+                	<!-- Nav tabs -->
+                    <ul class="nav nav-tabs" role="tablist">
+                        <li role="presentation" class="active"><a href=" {% static '#work' %} " aria-controls="work" role="tab" data-toggle="tab">Why work with us</a></li>
+                        <li role="presentation"><a href=" {% static '#Benifits' %} " aria-controls="Benifits" role="tab" data-toggle="tab">Benifits &amp; perks</a></li>
+                        <li role="presentation"><a href=" {% static '#located' %} " aria-controls="located" role="tab" data-toggle="tab">Where we located</a></li>
+                    </ul>
+                    <!-- Tab panes -->
+                    <div class="tab-content">
+                        <div role="tabpanel" class="tab-pane fade in active" id="work">
+    <h4>Why Work with Us</h4>
+    <p>At Booksphere, we are passionate about revolutionizing the way readers, authors, and publishers connect. Whether you're an aspiring writer looking to showcase your work, a publisher seeking a wider audience, or a reader eager to explore a world of literature, Booksphere offers the perfect platform.</p>
+    <p>Our digital library provides a seamless reading experience, offering both free and premium books across various genres. By working with us, you gain access to a vibrant community, innovative tools, and a user-friendly ecosystem designed to support and enhance the literary world.</p>
+</div>
+
+                        <div role="tabpanel" class="tab-pane fade" id="Benifits">
+                        	<h4>Benifits &amp; Perks</h4>
+                            <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
+                            <p> Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
+                        </div>
+                        <div role="tabpanel" class="tab-pane fade" id="located">
+                        	<h4>Where we located?</h4>
+                            <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+	</div>	
+	<!--FACTS SECTION END-->
+	<section class="kode-uptodate">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-4">
+					<h2>stay up-to-dated</h2>
+				</div>
+				<div class="col-md-8">
+					<div class="row">
+						<div class="col-md-3">
+							<div class="social-icons">
+								<ul>
+									<li><a href="#"><i class="fa fa-facebook"></i></a></li>
+									<li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+									<li><a href="#"><i class="fa fa-twitter"></i></a></li>
+									<li><a href="#"><i class="fa fa-pinterest-p"></i></a></li>
+								</ul>
+							</div>
+						</div>
+						<div class="col-md-9">
+							<div class="input-container">
+								<input type="text" placeholder="Your E-mail Address" id="sub-2">
+								<button>Subscribe</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+    <!--CONTENT END-->
+  {%endblock%}

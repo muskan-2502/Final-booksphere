@@ -1,0 +1,116 @@
+{%extends 'base.html'%}
+{%block main%}
+{%load static%}
+<style>
+    .plan-card {
+    border: 2px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: 0.3s ease-in-out;
+    margin-bottom: 20px;
+}
+
+.plan-card:hover {
+    transform: scale(1.05);
+}
+
+.plan-card .card-header {
+    background: #f8f9fa;
+    padding: 20px;
+    border-bottom: 2px solid #ddd;
+}
+
+.plan-card .card-body {
+    padding: 20px;
+}
+
+.plan-card .card-footer {
+    padding: 15px;
+    background: #f8f9fa;
+}
+
+.plan-features {
+    list-style: none;
+    padding: 0;
+}
+
+.plan-features li {
+    padding: 8px 0;
+    font-size: 16px;
+}
+
+.price {
+    font-size: 24px;
+    font-weight: bold;
+    color: #deab90;
+}
+
+.btn {
+    width: 100%;
+    font-size: 18px;
+}
+
+</style>
+     <!--BANNER START-->
+    <div class="kode-inner-banner">
+    	<div class="kode-page-heading">
+        	<h2>Plans</h2>
+            <ol class="breadcrumb">
+              <li><a href="#">Home</a></li>
+              <li><a href="#">Library</a></li>
+              <li class="active">Plans</li>
+            </ol>
+        </div>
+    </div>
+    <!--BANNER END-->
+
+<section class="section-padding package-area">
+    <div class="container">
+        <div class="section-title text-center">
+            <h1><span> Book Subscription Plans</span></h1>
+        </div>
+
+        <div class="row">
+            {% for plan in plans %}
+            <div class="col-md-4 col-sm-6">
+                <div class="card plan-card">
+                    <div class="card-header text-center">
+                        <h3>{{ plan.name }}</h3>
+                        <h4 class="price">₹{{ plan.price }}</h4>
+                        <p class="duration">{{ plan.duration_months }} Months Plan</p>
+                    </div>
+                    <div class="card-body">
+                        <ul class="plan-features">
+                            <li>
+                                <i class="fa {% if plan.max_books_per_month > 0 %}fa-check text-success{% else %}fa-times text-danger{% endif %}"></i>
+                                Access up to {{ plan.max_books_per_month }} books/month
+                            </li>
+                            <li>
+                                <i class="fa {% if plan.can_listen_audio %}fa-check text-success{% else %}fa-times text-danger{% endif %}"></i>
+                                Audiobook Access
+                            </li>
+                            <li>
+                                <i class="fa fa-clock text-primary"></i>
+                                Valid for {{ plan.duration_months }} months
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="card-footer text-center">
+                        {% if plan.id in active_plan_ids %}
+                            <a href="#" class="btn btn-success disabled">Active</a>
+                        {% else %}
+                            {% if profile %}
+                                <a href="{% url 'create_order' plan.id %}" class="btn btn-primary">Subscribe Now</a>
+                            {% else %}
+                                <a href="/adduserdetail" class="btn btn-primary">Subscribe Now</a>
+                            {% endif %}
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+ {%endblock%}
